@@ -30,11 +30,11 @@ class Matrix {
     }
     
     // forgatás beállítása a sík meghatározása alapján ------------------------------
-    void setRotation(int t1, int t2, float alpha){
+    void setRotation(int t1, int t2, float alpha, float scale){
       // a két tengely (t1 és t2) meghatároz egy síkot
       
-      float C = cos(alpha);
-      float S = sin(alpha);
+      float C = cos(alpha) * scale;
+      float S = sin(alpha) * scale;
       
       setCell(t1, t1, C);
       setCell(t1, t2, S);

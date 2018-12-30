@@ -83,18 +83,10 @@ class HyperCube {
     }
     
     // Tranzformáció ----------------------------------------------------------
-    void rotate(float phi, int n){
-      rot += phi;    //forgatási szög
-      
-      float C = cos(rot) * scale;
-      float S = sin(rot) * scale;
-      
-      n = n - 1;    // a ciklus 0-tól kezdődik, nem egytől
-      
-      trM.setCell(n  , n  , C);    //forgatási mátrix felépítése
-      trM.setCell(n  , n+1, S);
-      trM.setCell(n+1, n  ,-S);
-      trM.setCell(n+1, n+1, C);
+    void rotate(int t1, int t2, float phi){
+      //forgatási mátrix felépítése
+      rot += phi;
+      trM.setRotation(t1, t2, rot, scale);
     }
     
     // Egyéni kirajzolás ------------------------------------------------------ 
@@ -106,4 +98,3 @@ class HyperCube {
     }
     
 }
-
