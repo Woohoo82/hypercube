@@ -11,12 +11,7 @@ class Matrix {
       dim = numOfDimension;
       m = new float[dim][dim];
       
-      for (int i=0; i<dim; i++)
-        for (int j=0; j<dim; j++)
-          m[i][j] = 0;
-          
-      for (int i=0; i<dim; i++)
-        m[i][i] = Identity;
+      goIdentity(Identity);
     }
     
     // mátrix egy bizonyos cellájának beállítása index alapján ----------------------
@@ -27,6 +22,16 @@ class Matrix {
       if (j>=dim) j -= dim;
       
       m[i][j] = x;
+    }
+    
+    // Inicializálás egységmátrixként -----------------------------------------------
+    void goIdentity(float Identity){
+      for (int i=0; i<dim; i++)
+        for (int j=0; j<dim; j++)
+          m[i][j] = 0;
+          
+      for (int i=0; i<dim; i++)
+        m[i][i] = Identity;
     }
     
     // forgatás beállítása a sík meghatározása alapján ------------------------------
@@ -49,6 +54,27 @@ class Matrix {
       for (int i=0; i<dim; i++)
         for (int j=0; j<dim; j++)
           R.coord[i] += p.coord[j] * m[i][j];
+      
+      return R;
+    }
+    
+    // Mátrixok összeszorzása ------------------------------------------------- 
+    // !!! UNTESTED !!!
+    Matrix MmulM(Matrix other){
+      Matrix R = new Matrix(dim, 1.0);
+      float sum;
+      
+      for (int c = 0; c < dim; c++) {
+        for (int d = 0; d < dim; d++) {
+          sum = 0;
+          
+          for (int k = 0; k < dim; k++) {
+            sum = sum + m[c][k] * other.m[k][d];
+          }
+   
+          R.m[c][d] = sum;
+        }
+      }
       
       return R;
     }

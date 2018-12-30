@@ -37,12 +37,12 @@ void draw() {
   int offsY = height / 4;
   
   int i = 0;
-  for (int a = 0;   a < num_of_dimensions - 1;   a++) {
-    for (int b = a+1;   b < num_of_dimensions;   b++) {
+  for (int a = 0; a < num_of_dimensions - 1; a++) {
+    for (int b = a+1; b < num_of_dimensions; b++) {
       
       Drawer.setOffset( (i % 3) * offsX - offsX,
                        ((i < 3) ? 1 : -1) * offsY);
-    
+        
       HC[i].rotate(a, b, 0.01);
       HC[i].paint();
       i++;
